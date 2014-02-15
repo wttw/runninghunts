@@ -39,6 +39,15 @@ void MainWindow::changeEvent(QEvent *e)
 
 void MainWindow::doSomething()
 {
+  if(stars >= 10) {
+    stars++;
+    description->append(tr("<p>No, really. Game over.</p>"));
+    prompt();
+    if(stars >= 13) {
+      QApplication::exit();
+    }
+    return;
+  }
   int i = random() % 4;
   north->setEnabled(i != 0);
   south->setEnabled(i != 1);
@@ -60,7 +69,7 @@ void MainWindow::doSomething()
     twisty = tr("twisty maze of little passages");
   }
 
-  QString desc = tr("<p>You are in a %1</p>");
+  QString desc = tr("<hr><p>You are in a %1</p>").arg(twisty);
 
   if(random() % 3) {
     stars++;
@@ -73,7 +82,8 @@ void MainWindow::doSomething()
                      "<p>What? Ten? Really? <i>sigh</i></p>"
                      "<p style=\"color: red\">You have 7 stars in there.</p>"));
     } else if (stars == 10) {
-      desc.append(tr("<p style=\"color: red\">There's a star here! You pick it"
+      desc.append(tr("<p><img src=\":/runninghunts.jpg\" width=\"240\" height=\"170\"></p>"
+                     "<p style=\"color: red\">There's a star here! You pick it"
                      " up, and put it in your suspiciously capacious backpack."
                      " That makes ten! You're done, time to head back to"
                      " github. GAME OVER!</p>"));
@@ -83,6 +93,7 @@ void MainWindow::doSomething()
                      " You have %1 stars in there.").arg(stars));
     }
   }
+  description->append(desc);
   prompt();
 }
 
