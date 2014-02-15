@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>564</width>
+    <height>445</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Runninghunt and the quest for seven^Wten stars!</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QTextBrowser" name="description"/>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QPushButton" name="north">
+        <property name="text">
+         <string>Go North</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="east">
+        <property name="text">
+         <string>Go East</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="south">
+        <property name="text">
+         <string>Go South</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="west">
+        <property name="text">
+         <string>Go West</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="inventory">
+        <property name="text">
+         <string>Inventory</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
