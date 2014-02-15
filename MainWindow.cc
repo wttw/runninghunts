@@ -9,11 +9,11 @@ MainWindow::MainWindow(QWidget *parent) :
   QMainWindow(parent), stars(0)
 {
   setupUi(this);
-  connect(north, &QPushButton::click, this, &MainWindow::doSomething);
-  connect(south, &QPushButton::click, this, &MainWindow::doSomething);
-  connect(east, &QPushButton::click, this, &MainWindow::doSomething);
-  connect(west, &QPushButton::click, this, &MainWindow::doSomething);
-  connect(inventory, &QPushButton::click, this, &MainWindow::doInventory);
+  connect(north, &QPushButton::clicked, this, &MainWindow::doSomething);
+  connect(south, &QPushButton::clicked, this, &MainWindow::doSomething);
+  connect(east, &QPushButton::clicked, this, &MainWindow::doSomething);
+  connect(west, &QPushButton::clicked, this, &MainWindow::doSomething);
+  connect(inventory, &QPushButton::clicked, this, &MainWindow::doInventory);
   description->setHtml(tr("<p>You've been sent on an epic quest (imagine"
                           " some backstory involving an inn, a suspiciously"
                           " peppy bard and a threat to middle earth as you"
@@ -60,17 +60,39 @@ void MainWindow::doSomething()
     twisty = tr("twisty maze of little passages");
   }
 
-  if(random() % 3) {
+  QString desc = tr("<p>You are in a %1</p>");
 
+  if(random() % 3) {
+    stars++;
+
+    if(stars == 7) {
+      desc.append(tr("<p style=\"color: red\">There's a star here! You pick it"
+                     " up, and put it in your suspiciously capacious backpack."
+                     " That makes seven! You're done, time to head back to"
+                     " github. GAME OVER!</p>"
+                     "<p>What? Ten? Really? <i>sigh</i></p>"
+                     "<p style=\"color: red\">You have 7 stars in there.</p>"));
+    } else if (stars == 10) {
+      desc.append(tr("<p style=\"color: red\">There's a star here! You pick it"
+                     " up, and put it in your suspiciously capacious backpack."
+                     " That makes ten! You're done, time to head back to"
+                     " github. GAME OVER!</p>"));
+    } else {
+      desc.append(tr("<p style=\"color: red\">There's a star here! You pick it"
+                     " up, and put it in your suspiciously capacious backpack."
+                     " You have %1 stars in there.").arg(stars));
+    }
   }
+  prompt();
 }
 
 void MainWindow::doInventory()
 {
   description->append(tr("<p>You have:<br>%1 stars<br>no tea</p>").arg(stars));
+  prompt();
 }
 
 void MainWindow::prompt()
 {
-  description->append("<p>What now?</p>");
+  description->append("<p style=\"color: blue\">What now?</p>");
 }
